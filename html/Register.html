@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <script src="jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<form>
+    <input type="text" id="username"  name="login" placeholder="Login" required>
+    <input type="text" id="password"  name="login" placeholder="Password" required >
+    <input type="text" id="passwordVerification" name="login" placeholder="Verify Password" required >
+    <input type="submit" onclick="newUser()" value="Register">
+    <p id="errorText"></p>
+</form>
+<script>
+    function newUser() {
+        let username = document.getElementById("username").value.trim;
+        let password = document.getElementById("password").value.trim();
+        let passwordVerify = document.getElementById("passwordVerification").value.trim();
+        if (password != passwordVerify && username.length < 8){
+            window.alert("Passwords are not the same!\n" +
+                "Or Username is shorter than 8 Chars");
+        }else {
+            $.post("url", { json_string:JSON.stringify({user_name:username, user_pass:password}) });
+
+        }
+
+
+    }
+</script>
+</body>
+</html>
